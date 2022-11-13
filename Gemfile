@@ -10,9 +10,7 @@ gem "rails", "~> 7.0.4"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database in development, and PostgreSQL in production
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'sqlite3'
 
 group :production do
    gem 'pg'
