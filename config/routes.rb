@@ -6,4 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root 'breweries#index'
   get 'ratings', to: 'ratings#index'
+  get 'ratings/new', to:'ratings#new'
+  post 'ratings', to: 'ratings#create'
+
 end
