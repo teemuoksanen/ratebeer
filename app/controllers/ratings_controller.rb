@@ -1,5 +1,4 @@
 class RatingsController < ApplicationController
-  
   def index
     @ratings = Rating.all
   end
@@ -10,7 +9,12 @@ class RatingsController < ApplicationController
   end
 
   def create
-    Rating.create params.require(:rating).permit(:score, :beer_id)
+    # otetaan luotu reittaus muuttujaan
+    rating = Rating.create params.require(:rating).permit(:score, :beer_id)
+
+    # talletetaan tehty reittaus sessioon
+    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
+
     redirect_to ratings_path
   end
 
@@ -18,6 +22,5 @@ class RatingsController < ApplicationController
     rating = Rating.find(params[:id])
     rating.delete
     redirect_to ratings_path
-  end  
-
+  end
 end
