@@ -30,16 +30,18 @@
 <ul>
   <% @user.ratings.each do |rating| %>
     <li>
-      <%= rating.beer.name %>
-      <%= rating.score %>
-      <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+      <%= rating.to_s %>
+      <% if @user == current_user %>
+        <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
-
-  <%= button_to "Destroy this user", @user, method: :delete %>
+  <% if @user == current_user %>
+    | <%= link_to "Edit this user", edit_user_path(@user) %>
+    <%= button_to "Destroy this user", @user, method: :delete %>
+  <% end %>
 </div>
