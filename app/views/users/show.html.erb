@@ -15,6 +15,16 @@
   <% end %>
 </p>
 
+<h3>Member of</h3>
+
+<ul>
+  <% @user.beer_clubs.each do |beer_club| %>
+    <li>
+      <%= link_to beer_club.name, beer_club %>
+    </li>
+  <% end %>
+</ul>
+
 <h3>Ratings</h3>
 
 <ul>
