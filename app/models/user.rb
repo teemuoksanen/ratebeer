@@ -13,4 +13,10 @@ class User < ApplicationRecord
                                  maximum: 30 }
   validates :password, length: { minimum: 4 },
                        format: { with: /(?:[A-Z].*[0-9])|(?:[0-9].*[A-Z])/ }
+
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.order(score: :desc).limit(1).first.beer
+  end
 end
