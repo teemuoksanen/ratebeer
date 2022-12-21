@@ -19,4 +19,18 @@ class User < ApplicationRecord
 
     ratings.order(score: :desc).limit(1).first.beer
   end
+
+  def favorite_style
+    return nil if ratings.empty?
+
+    style_ratings = ratings.joins(:beer).group('beers.style').average('ratings.score')
+    style_ratings.key(style_ratings.values.max)
+  end
+
+  def favorite_brewery
+    return nil if ratings.empty?
+
+    brewery_ratings = ratings.joins(beer: :brewery).group('breweries.name').average('ratings.score')
+    brewery_ratings.key(brewery_ratings.values.max)
+  end
 end

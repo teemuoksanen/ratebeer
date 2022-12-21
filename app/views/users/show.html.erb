@@ -11,7 +11,9 @@
   <% if @user.ratings.empty? %>
     User has not yet made any ratings!
   <% else %>
-    User has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>.
+    User has made <%= pluralize(@user.ratings.count, 'rating') %>, average rating <%= @user.average_rating %>.<br />
+    User's favorite beer style is <%= @user.favorite_style %>.<br />
+    User's favorite brewery is <%= @user.favorite_brewery %>.
   <% end %>
 </p>
 
