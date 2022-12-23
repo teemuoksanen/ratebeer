@@ -4,7 +4,7 @@ include Helpers
 
 describe "Rating" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
-  let!(:beer1) { FactoryBot.create :beer, name: "iso 3", brewery:brewery }
+  let!(:beer1) { FactoryBot.create :beer, name: "Iso 3", brewery:brewery }
   let!(:beer2) { FactoryBot.create :beer, name: "Karhu", brewery:brewery }
   let!(:user) { FactoryBot.create :user }
 
@@ -14,7 +14,7 @@ describe "Rating" do
 
   it "when given, is registered to the beer and user who is signed in" do
     visit new_rating_path
-    select('iso 3', from: 'rating[beer_id]')
+    select('Iso 3', from: 'rating[beer_id]')
     fill_in('rating[score]', with: '15')
 
     expect{
@@ -24,5 +24,16 @@ describe "Rating" do
     expect(user.ratings.count).to eq(1)
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
+  end
+
+  it "shows correct number of ratings" do
+    FactoryBot.create :rating, beer: beer1, score: 15, user: user
+    FactoryBot.create :rating, beer: beer2, score: 20, user: user
+
+    visit ratings_path
+    
+    expect(page).to have_content 'Number of ratings: 2'
+    expect(page).to have_content 'Iso 3 15'
+    expect(page).to have_content 'Karhu 20'
   end
 end

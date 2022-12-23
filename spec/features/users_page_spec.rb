@@ -3,9 +3,12 @@ require 'rails_helper'
 include Helpers
 
 describe "User" do
-  before :each do
-    FactoryBot.create :user
-  end
+  let!(:user) { FactoryBot.create :user }
+  let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+  let!(:brewery2) { FactoryBot.create :brewery, name: "Testipanimo" }
+  let!(:beer1) { FactoryBot.create :beer, name: "Iso 3", brewery:brewery }
+  let!(:beer2) { FactoryBot.create :beer, name: "Karhu", brewery:brewery }
+  let!(:beer3) { FactoryBot.create :beer, name: "Paras Olut", style: "IPA", brewery:brewery2 }
 
   describe "who has signed up" do
     it "can signin with right credentials" do
@@ -32,5 +35,35 @@ describe "User" do
     expect{
       click_button('Create User')
     }.to change{User.count}.by(1)
+  end
+
+  it "has ratings shown on user's page" do
+    FactoryBot.create :rating, beer: beer1, score: 15, user: user
+    FactoryBot.create :rating, beer: beer2, score: 20, user: user
+
+    visit user_path(user)
+    expect(page).to have_content 'Iso 3 15'
+    expect(page).to have_content 'Karhu 20'
+  end
+
+  it "can remove a rating successfully" do
+    FactoryBot.create :rating, beer: beer1, score: 15, user: user
+
+    sign_in(username: "Pekka", password: "Foobar1")
+    visit user_path(user)
+
+    expect{
+      click_button "delete"
+    }.to change{Rating.count}.from(1).to(0)
+  end
+
+  it "has favorite beer style and brewery shown on user's page" do
+    FactoryBot.create :rating, beer: beer1, score: 15, user: user
+    FactoryBot.create :rating, beer: beer2, score: 20, user: user
+    FactoryBot.create :rating, beer: beer3, score: 45, user: user
+
+    visit user_path(user)
+    expect(page).to have_content "User's favorite beer style is IPA."
+    expect(page).to have_content "User's favorite brewery is Testipanimo."
   end
 end
