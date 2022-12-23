@@ -3,6 +3,11 @@ require 'rails_helper'
 describe "Beer" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
 
+  before :each do
+    FactoryBot.create :user
+    sign_in(username: "Pekka", password: "Foobar1")
+  end
+
   it "is created with valid information" do
     visit new_beer_path
 
