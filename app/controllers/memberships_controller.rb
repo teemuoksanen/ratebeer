@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
     @membership.user = current_user
 
     if @membership.save
-      redirect_to user_path current_user
+      redirect_to beer_club_path(@membership.beer_club_id), notice: "#{current_user.username}, welcome to the club."
     else
       @beer_clubs = BeerClub.where.not(id: Membership.select(:beer_club_id).where(user: current_user))
       render :new, status: :unprocessable_entity
@@ -48,10 +48,11 @@ class MembershipsController < ApplicationController
 
   # DELETE /memberships/1 or /memberships/1.json
   def destroy
+    removed_club_membership = BeerClub.find_by(id: @membership.beer_club_id)
     @membership.destroy
 
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: "Membership was successfully destroyed." }
+      format.html { redirect_to current_user, notice: "Membership in #{removed_club_membership.name} was successfully terminated." }
       format.json { head :no_content }
     end
   end

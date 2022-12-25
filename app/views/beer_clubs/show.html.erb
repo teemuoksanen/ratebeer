@@ -12,13 +12,20 @@
   <% end %>
 </ul>
 
-<div>
-  <% if not current_user.nil? %>
-    <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %> |
+<% if current_user %>
+  <% if @beer_club.member?(current_user) %>
+    <% membership = Membership.find_by(user_id: current_user.id, beer_club_id: @beer_club.id) %>
+    <%= button_to "Terminate membership in this beer club", membership, method: :delete %>
+  <% else %>
+    <%= form_with(model: @membership) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join this beer club" %>
+    <% end %>
   <% end %>
-  <%= link_to "Back to beer clubs", beer_clubs_path %>
 
-  <% if not current_user.nil? %>
-    <%= button_to "Destroy this beer club", @beer_club, method: :delete %>
-  <% end %>
-</div>
+  <div>
+    <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %>
+    <%= button_to "Destroy this beer club", @beer_club, method: :delet %>
+  </div>
+<% end %>
