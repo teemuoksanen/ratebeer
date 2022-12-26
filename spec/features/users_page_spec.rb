@@ -6,9 +6,10 @@ describe "User" do
   let!(:user) { FactoryBot.create :user }
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
   let!(:brewery2) { FactoryBot.create :brewery, name: "Testipanimo" }
+  let!(:style) { FactoryBot.create :style, name: "IPA", description: "This is from India." }
   let!(:beer1) { FactoryBot.create :beer, name: "Iso 3", brewery:brewery }
   let!(:beer2) { FactoryBot.create :beer, name: "Karhu", brewery:brewery }
-  let!(:beer3) { FactoryBot.create :beer, name: "Paras Olut", style: "IPA", brewery:brewery2 }
+  let!(:beer3) { FactoryBot.create :beer, name: "Paras Olut", style:style, brewery:brewery2 }
 
   describe "who has signed up" do
     it "can signin with right credentials" do

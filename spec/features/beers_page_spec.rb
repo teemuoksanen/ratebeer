@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Beer" do
   let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+  let!(:style) { FactoryBot.create :style, name: "Lager" }
 
   before :each do
     FactoryBot.create :user
@@ -12,7 +13,7 @@ describe "Beer" do
     visit new_beer_path
 
     fill_in('beer[name]', with: 'Testiolut')
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('Koff', from: 'beer[brewery_id]')
     click_button('Create Beer')
 
@@ -23,7 +24,7 @@ describe "Beer" do
   it "is not created if no name is given" do
     visit new_beer_path
 
-    select('Lager', from: 'beer[style]')
+    select('Lager', from: 'beer[style_id]')
     select('Koff', from: 'beer[brewery_id]')
     click_button('Create Beer')
 
