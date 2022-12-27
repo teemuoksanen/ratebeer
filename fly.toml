@@ -1,4 +1,4 @@
-# fly.toml file generated for ratebeer-tjo on 2022-11-13T17:43:32+02:00
+# fly.toml file generated for ratebeer-tjo on 2022-12-27T22:20:29+02:00
 
 app = "ratebeer-tjo"
 kill_signal = "SIGINT"
