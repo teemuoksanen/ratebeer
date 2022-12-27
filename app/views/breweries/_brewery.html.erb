@@ -1,10 +1,13 @@
 <p>
   <em>Established in <%= brewery.year %></em>
+  <% if not brewery.active  %>
+    <span class="badge bg-secondary">retired</span>
+  <% end %>
 </p>
 
 <p>
   Beers count:
-  <%= @brewery.beers.count %>
+  <%= brewery.beers.count %>
 </p>
 
 <p>
