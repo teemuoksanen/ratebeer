@@ -475,7 +475,6 @@
           null,
           0,
           0,
-          0,
           null,
           0,
           null,
@@ -493,6 +492,47 @@
         ]
       },
       "/Volumes/Data/Git/ratebeer/app/models/place.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Volumes/Data/Git/ratebeer/lib/weatherstack_api.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Volumes/Data/Git/ratebeer/app/models/weather.rb": {
         "lines": [
           1,
           1,
@@ -521,6 +561,7 @@
           3,
           1,
           null,
+          2,
           2,
           null,
           null,
@@ -897,6 +938,6 @@
         }
       }
     },
-    "timestamp": 1672093170
+    "timestamp": 1672169000
   }
 }

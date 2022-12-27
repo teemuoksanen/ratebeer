@@ -25,7 +25,6 @@ class BeermappingApi
   def self.get_place(place_id)
     url = "http://beermapping.com/webservice/locquery/#{key}/"
 
-    puts place_id
     response = HTTParty.get "#{url}#{place_id}"
     place = response.parsed_response["bmp_locations"]["location"]
 

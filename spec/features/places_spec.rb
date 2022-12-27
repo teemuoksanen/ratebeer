@@ -6,6 +6,10 @@ describe "Places" do
       [ Place.new( name: "Oljenkorsi", id: 1 ) ]
     )
 
+    allow(WeatherstackApi).to receive(:place).with("kumpula").and_return(
+      Weather.new( name: "Kumpula", temperature: 0, weather_icons: ["/pixel.png"], wind_speed: 1, wind_dir: "S" )
+    )
+
     visit places_path
     fill_in('city', with: 'kumpula')
     click_button "Search"
@@ -16,6 +20,10 @@ describe "Places" do
   it "if many are returned by the API, all are shown at the page" do
     allow(BeermappingApi).to receive(:places_in).with("kumpula").and_return(
       [ Place.new( name: "Oljenkorsi", id: 1 ), Place.new( name: "Parmesan", id: 2 ) ]
+    )
+
+    allow(WeatherstackApi).to receive(:place).with("kumpula").and_return(
+      Weather.new( name: "Kumpula", temperature: 0, weather_icons: ["/pixel.png"], wind_speed: 1, wind_dir: "S" )
     )
 
     visit places_path
