@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<h2>List of ratings</h2>
+<h1>List of ratings</h1>
 
 <p>Number of ratings: <%= @ratings.count %></p>
 
@@ -10,4 +8,4 @@
  <% end %>
 </ul>
 
-<%= link_to('New rating', new_rating_path) if current_user %>
+<%= link_to('New rating', new_rating_path, class:'btn btn-primary') if current_user %>

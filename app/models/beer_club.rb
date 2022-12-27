@@ -12,4 +12,8 @@ class BeerClub < ApplicationRecord
     end
     false
   end
+
+  def to_s
+    name
+  end
 end

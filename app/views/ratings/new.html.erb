@@ -1,8 +1,8 @@
-<h2>Create new rating</h2>
+<h1>Create new rating</h1>
 
 <%= form_for(@rating) do |f| %>
   <% if @rating.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger" role="alert">
       <h2><%= pluralize(@rating.errors.count, "error") %> prohibited rating from being saved:</h2>
 
       <ul>
@@ -12,8 +12,18 @@
       </ul>
     </div>
   <% end %>
-  
-  <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
-  score: <%= f.number_field :score %>
-  <%= f.submit %>
+
+  <div class="mb-3">
+    <%= f.label :beer_id, class: "form-label" %>
+    <%= f.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id), {}, { :class => "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :score, class: "form-label" %>
+    <%= f.number_field :score, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
 <% end %>

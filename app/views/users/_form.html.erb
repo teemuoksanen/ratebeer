@@ -1,6 +1,6 @@
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger" role="alert">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
@@ -12,23 +12,23 @@
   <% end %>
 
   <% if @user.new_record? %>
-    <div>
-      <%= form.label :username, style: "display: block" %>
-      <%= form.text_field :username %>
+    <div class="mb-3">
+      <%= form.label :username, class: "form-label" %>
+      <%= form.text_field :username, class: "form-control" %>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :password, style: "display: block"%>
-    <%= form.password_field :password %>
+  <div class="mb-3">
+    <%= form.label :password, class: "form-label" %>
+    <%= form.password_field :password, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :password_confirmation, style: "display: block"%>
-    <%= form.password_field :password_confirmation %>
+  <div class="mb-3">
+    <%= form.label :password_confirmation, class: "form-label" %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

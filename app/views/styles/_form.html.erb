@@ -1,6 +1,6 @@
 <%= form_with(model: style) do |form| %>
   <% if style.errors.any? %>
-    <div style="color: red">
+    <div class="alert alert-danger" role="alert">
       <h2><%= pluralize(style.errors.count, "error") %> prohibited this style from being saved:</h2>
 
       <ul>
@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,18 +1,14 @@
-<p style="color: green"><%= notice %></p>
+<h1>Beer: <%= @beer.name %></h1>
 
 <%= render @beer %>
 
-<% if current_user %>
-  <h4>give a rating:</h4>
+<p>
+  <%= link_to "Back to beers", beers_path, class:'btn btn-primary' %>
+</p>
 
-  <%= form_with(model: @rating) do |form| %>
-    <%= form.hidden_field :beer_id %>
-    score: <%= form.number_field :score %>
-    <%= form.submit "Create rating" %>
+<p>
+  <% if current_user %>
+    <%= link_to "Edit this beer", edit_beer_path(@beer), class:'btn btn-primary' %>
+    <%= button_to "Destroy this beer", @beer, method: :delete, class:'btn btn-danger' %>
   <% end %>
-
-  <div>
-    <%= link_to "Edit this beer", edit_beer_path(@beer) %>
-    <%= button_to "Destroy this beer", @beer, method: :delete %>
-  </div>
-<% end %>
+</p>

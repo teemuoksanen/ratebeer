@@ -2,7 +2,7 @@
 
 <%= form_for(@membership) do |f| %>
   <% if @membership.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger" role="alert">
       <h2><%= pluralize(@membership.errors.count, "error") %> prohibited rating from being saved:</h2>
 
       <ul>
@@ -13,6 +13,11 @@
     </div>
   <% end %>
 
-  <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name) %>
-  <%= f.submit "Join the club" %>
+  <div class="mb-3">
+    <%= f.select :beer_club_id, options_from_collection_for_select(@beer_clubs, :id, :name), {}, { :class => "form-select" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Join the club", class: "btn btn-primary" %>
+  </div>
 <% end %>

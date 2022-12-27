@@ -1,9 +1,4 @@
-<h2>User</h2>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+<h1>User: <%= @user.username %></h1>
 
 <p>
   <% if @user.ratings.empty? %>
@@ -32,16 +27,18 @@
     <li>
       <%= rating.to_s %>
       <% if @user == current_user %>
-        <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class:'btn btn-danger' %>
       <% end %>
     </li>
   <% end %>
 </ul>
 
-<div>
-  <%= link_to "Back to users", users_path %>
+<p>
+  <%= link_to "Back to users", users_path, class:'btn btn-primary' %>
+</p>
+<p>
   <% if @user == current_user %>
-    | <%= link_to "Edit this user", edit_user_path(@user) %>
-    <%= button_to "Destroy this user", @user, method: :delete %>
+    <%= link_to "Edit your details", edit_user_path(@user), class:'btn btn-primary' %>
+    <%= button_to "Destroy your account", @user, method: :delete, class:'btn btn-danger' %>
   <% end %>
-</div>
+</p>
