@@ -34,4 +34,8 @@ class User < ApplicationRecord
     brewery_ratings = ratings.joins(beer: :brewery).group('breweries.name').average('ratings.score')
     brewery_ratings.key(brewery_ratings.values.max)
   end
+
+  def to_s
+    username
+  end
 end

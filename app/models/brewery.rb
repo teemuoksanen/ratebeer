@@ -10,7 +10,7 @@ class Brewery < ApplicationRecord
   validate :year_cannot_be_in_the_future
 
   scope :active, -> { where active: true }
-  scope :retired, -> { where active: [nil,false] }
+  scope :retired, -> { where active: [nil, false] }
 
   def year_cannot_be_in_the_future
     errors.add(:year, "can't be in the future") if year.present? && year > Date.today.year

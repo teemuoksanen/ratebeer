@@ -5,16 +5,20 @@
   <% end %>
 </p>
 
+<h2>Beers</h2>
+
 <p>
   Beers count:
   <%= brewery.beers.count %>
 </p>
 
-<p>
+<ul>
   <% brewery.beers.each do |beer| %>
-    <%= link_to beer.name, beer %>
+    <li><%= link_to beer.name, beer %></li>
   <% end %>
-</p>
+</ul>
+
+<h2>Ratings</h2>
 
 <p>
   <% if brewery.ratings.empty? %>

@@ -38,7 +38,7 @@
           1,
           null,
           1,
-          7,
+          8,
           null,
           null
         ]
@@ -81,6 +81,10 @@
           7,
           7,
           null,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -97,6 +101,9 @@
           null,
           1,
           null,
+          4,
+          4,
+          null,
           1,
           32,
           null,
@@ -111,12 +118,18 @@
           0,
           0,
           null,
+          null,
+          1,
+          2,
+          null,
           null
         ]
       },
       "/Volumes/Data/Git/ratebeer/app/models/style.rb": {
         "lines": [
           1,
+          1,
+          null,
           1,
           null,
           1,
@@ -156,9 +169,9 @@
           1,
           null,
           1,
-          105,
+          89,
           null,
-          70,
+          55,
           null,
           null,
           1,
@@ -280,6 +293,10 @@
           null,
           0,
           null,
+          null,
+          1,
+          0,
+          null,
           null
         ]
       },
@@ -376,6 +393,7 @@
           null,
           null,
           1,
+          3,
           3,
           null,
           null,
@@ -938,6 +956,6 @@
         }
       }
     },
-    "timestamp": 1672169000
+    "timestamp": 1672220285
   }
 }
