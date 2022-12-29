@@ -6,9 +6,4 @@
   <%= link_to "Back to beers", beers_path, class:'btn btn-primary' %>
 </p>
 
-<p>
-  <% if current_user %>
-    <%= link_to "Edit this beer", edit_beer_path(@beer), class:'btn btn-primary' %>
-    <%= button_to "Destroy this beer", @beer, method: :delete, class:'btn btn-danger' %>
-  <% end %>
-</p>
+<%= edit_and_destroy_buttons(@beer) %>

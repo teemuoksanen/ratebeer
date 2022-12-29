@@ -19,7 +19,7 @@
           <% @top_beers.each do |beer, score| %>
             <tr>
               <td><%= link_to beer.name, beer %></td>
-              <td><%= score %></td>
+              <td><%= round(score) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -41,7 +41,7 @@
           <% @top_breweries.each do |brewery, score| %>
             <tr>
               <td><%= link_to brewery.name, brewery %></td>
-              <td><%= score %></td>
+              <td><%= round(score) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -63,7 +63,7 @@
           <% @top_styles.each do |style, score| %>
             <tr>
               <td><%= link_to style.name, style %></td>
-              <td><%= score %></td>
+              <td><%= round(score) %></td>
             </tr>
           <% end %>
         </tbody>

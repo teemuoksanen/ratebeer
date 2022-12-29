@@ -14,9 +14,4 @@
   <%= link_to "Back to styles", styles_path, class:'btn btn-primary' %>
 </p>
 
-<p>
-  <% if current_user %>
-    <%= link_to "Edit this style", edit_style_path(@style), class:'btn btn-primary' %>
-    <%= button_to "Destroy this style", @style, method: :delete, class:'btn btn-danger' %>
-  <% end %>
-</p>
+<%= edit_and_destroy_buttons(@style) %>

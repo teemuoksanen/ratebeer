@@ -8,9 +8,9 @@ class Rating < ApplicationRecord
 
   scope :recent, -> { Rating.last(5).reverse }
 
-  def self.top(n)
+  def self.top(top_n)
     top = {}
-    top_n_raters = Rating.group('user_id').count('score').take(n)
+    top_n_raters = Rating.group('user_id').count('score').take(top_n)
     top_n_raters.each do |k, v| top.store(User.find_by(id: k), v) end
     top
   end
