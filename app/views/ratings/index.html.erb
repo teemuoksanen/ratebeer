@@ -1,10 +1,100 @@
-<h1>List of ratings</h1>
+<h1>Ratings</h1>
 
 <p>Number of ratings: <%= @ratings.count %></p>
 
+<div class="container text-center">
+  <div class="row">
+    <div class="col-sm-4">
+
+      <h2>Top beers</h2>
+
+      <table class="table table-striped table-hover" id="beers">
+        <thead>
+          <tr>
+            <th>Beer</th>
+            <th>Average score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_beers.each do |beer, score| %>
+            <tr>
+              <td><%= link_to beer.name, beer %></td>
+              <td><%= score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">
+
+      <h2>Top breweries</h2>
+
+      <table class="table table-striped table-hover" id="beers">
+        <thead>
+          <tr>
+            <th>Brewery</th>
+            <th>Average score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_breweries.each do |brewery, score| %>
+            <tr>
+              <td><%= link_to brewery.name, brewery %></td>
+              <td><%= score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-4">
+
+      <h2>Top styles</h2>
+
+      <table class="table table-striped table-hover" id="beers">
+        <thead>
+          <tr>
+            <th>Style</th>
+            <th>Average score</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @top_styles.each do |style, score| %>
+            <tr>
+              <td><%= link_to style.name, style %></td>
+              <td><%= score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<h2>Most active users</h2>
+
+<ol>
+ <% @top_raters.each do |k, v| %>
+   <li>
+      <strong><%= k.username %></strong>: 
+      <%= pluralize(v, 'rating') %>
+    </li> 
+ <% end %>
+</ol>
+
+<h2>Recent ratings</h2>
+
 <ul>
- <% @ratings.each do |rating| %>
-   <%= render rating %>
+ <% @ratings.recent.each do |rating| %>
+   <li id="<%= dom_id rating %>">
+      <strong><%= rating.beer.name %></strong>
+      scored
+      <strong><%= rating.score %></strong>
+      by
+      <%= link_to rating.user.username, rating.user %>
+    </li> 
  <% end %>
 </ul>
 

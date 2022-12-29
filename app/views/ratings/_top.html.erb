@@ -1,0 +1,13 @@
+<%# locals: (type:) -%>
+
+<h2>Top <%= type %>s</h2>
+
+<ul>
+ <% @top.each do |k, v| %>
+   <li>
+      <strong><%= link_to k.name, k %></strong>
+      scored
+      <strong><%= v %></strong>
+    </li> 
+ <% end %>
+</ul>
