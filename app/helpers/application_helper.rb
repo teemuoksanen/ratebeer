@@ -6,7 +6,11 @@ module ApplicationHelper
     del = button_to('Destroy', item, method: :delete,
                                      form: { data: { turbo_confirm: "Are you sure ?" } },
                                      class: "btn btn-danger")
-    raw("<p>#{edit} #{del}</p>")
+    if current_user.admin
+      raw("<p>#{edit} #{del}</p>")
+    else
+      raw("<p>#{edit}</p>")
+    end
   end
 
   def round(number)

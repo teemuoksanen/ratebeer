@@ -1,4 +1,6 @@
-<h1>User: <%= @user.username %></h1>
+<h1>
+  User: <%= @user.username %>
+</h1>
 
 <p>
   <% if @user.ratings.empty? %>
@@ -9,6 +11,19 @@
     User's favorite brewery is <%= @user.favorite_brewery %>.
   <% end %>
 </p>
+
+<% if current_user_is_admin %>
+  <% if @user.closed %>
+    <p>
+      This users account is currently
+      <span class="badge bg-secondary">closed</span>.
+    </p>
+
+    <%= link_to "Reopen this account", toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Close this account", toggle_closed_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger" %>
+  <% end %>
+<% end %>
 
 <h3>Member of</h3>
 

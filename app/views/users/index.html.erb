@@ -4,6 +4,9 @@
   <% @users.each do |user| %>
     <li>
       <%= link_to user %>
+      <% if current_user_is_admin && user.closed %>
+        <span class="badge bg-secondary">closed</span>
+      <% end %>
     </li>
   <% end %>
 </ul>
