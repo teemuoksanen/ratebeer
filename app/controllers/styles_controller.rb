@@ -6,6 +6,13 @@ class StylesController < ApplicationController
   # GET /styles or /styles.json
   def index
     @styles = Style.all
+
+    order = params[:order] || 'name'
+
+    @styles = case order
+              when "name" then @styles.sort_by(&:name)
+              when "beers" then @styles.sort_by { |s| s.beers.count }.reverse
+              end
   end
 
   # GET /styles/1 or /styles/1.json

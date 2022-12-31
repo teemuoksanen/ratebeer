@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_30_183756) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_31_082957) do
   create_table "beer_clubs", force: :cascade do |t|
     t.string "name"
     t.integer "founded"
@@ -66,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_30_183756) do
     t.integer "ratings_count", default: 0
     t.boolean "admin"
     t.boolean "closed"
+    t.index ["username"], name: "index_users_on_username"
   end
 
   add_foreign_key "beers", "styles"
